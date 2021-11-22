@@ -1,0 +1,50 @@
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+
+<FirstWindow>:
+    name: "search"
+
+    BoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            color: "primary"
+            title: "movie"
+            left_action_items: [["menu", lambda button: app.callback(button)]]
+
+
+        MDLabel:
+            text: 'Wyszukaj! '
+            halign: 'center'
+            font_size: 32
+
+        BoxLayout:
+            orientation: "horizontal"
+            spacing: "10dp"
+            size_hint_max_y: "50dp"
+
+
+            TextInput:
+                id: searchbar
+                text: ""
+                multiline: False
+
+
+            Button:
+                size_hint_max_x: "100dp"
+                text: "Szukaj!"
+                disabled: True if searchbar.text=='' else False
+                on_release:
+                    app.root.current = "results" if searchbar  else search
+                    root.manager.transition.direction = "left"
+
+        BoxLayout:
+            orientation: "vertical"
+
+<SecondWindow>:
+    name: "results"
+
+
+
+
