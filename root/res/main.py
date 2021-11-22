@@ -8,6 +8,7 @@ from kivy.uix.image import Image
 from kivy.core.window import Window
 from kivy.properties import ObjectProperty
 from kivymd.uix.menu import MDDropdownMenu
+<<<<<<< Updated upstream
 from kivy.metrics import dp
 
 
@@ -42,10 +43,17 @@ class MainApp(MDApp):
         self.theme_cls.primary_palette = "Red"
         self.theme_cls.accent_palette = "Red"
         return Builder.load_file('tbar.kv')
+=======
 
-    def callback(self, button):
-        self.menu.caller = button
-        self.menu.open()
+
+class loginWindow(Screen):
+    pass
+
+
+class signupWindow(Screen):
+    pass
+>>>>>>> Stashed changes
+
 
 
 class FirstWindow(Screen):
@@ -56,6 +64,7 @@ class SecondWindow(Screen):
     pass
 
 
+<<<<<<< Updated upstream
 class MainScreen(GridLayout):
     manager = ObjectProperty(None)
 
@@ -65,3 +74,18 @@ class WindowManager(ScreenManager):
 
 
 MainApp().run()
+=======
+# adding screens
+sm.add_widget(searchWindow(name='search'))
+sm.add_widget(loginWindow(name='login'))
+sm.add_widget(signupWindow(name='signup'))
+
+class MainApp(MDApp):
+    def build(self):
+        return sm
+
+
+
+if __name__ == "__main__":
+    MainApp().run()
+>>>>>>> Stashed changes
