@@ -102,4 +102,5 @@ class MainApp(MDApp):
 
 
 if __name__ == "__main__":
+    print('dupa')
     MainApp().run()
