@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="0+id/add_action"
+        app:showAsAction="never"
+        android:title="Zaloguj się">
+    </item>
+    <item
+        android:id="0+id/add_action"
+        app:showAsAction="never"
+        android:title="Zarejestruj się">
+    </item>
+    <item
+        android:id="0+id/add_action"
+        app:showAsAction="never"
+        android:title="Moje filmy">
+    </item>
+
+</menu>
