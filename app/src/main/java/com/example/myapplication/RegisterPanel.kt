@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 
-class MainActivity : AppCompatActivity() {
+class RegisterPanel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_register_panel)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu,menu);
@@ -23,8 +23,6 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         else if(id==R.id.menubuttonregister){
-            var register: Intent = Intent(applicationContext, RegisterPanel::class.java);
-            startActivity(register);
             return true
         }
         else{

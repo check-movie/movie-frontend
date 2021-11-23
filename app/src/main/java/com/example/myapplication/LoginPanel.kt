@@ -18,12 +18,11 @@ class LoginPanel : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId;
         if(id==R.id.menubuttonlogin){
-            var login: Intent = Intent(applicationContext, LoginPanel::class.java);
-            startActivity(login);
             return true
         }
         else if(id==R.id.menubuttonregister){
-            //TODO przekierowanie do rejestracji
+            var register: Intent = Intent(applicationContext, RegisterPanel::class.java);
+            startActivity(register);
             return true
         }
         else{

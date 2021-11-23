@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".RegisterPanel"
+            android:exported="false" />
+        <activity
             android:name=".LoginPanel"
             android:exported="false" />
         <activity
