@@ -25,8 +25,9 @@ class LoginPanel : AppCompatActivity() {
             startActivity(register);
             return true
         }
-        else{
-            //TODO przekierowanie do filmow
+        else if(id==R.id.menubuttonmymovies){
+            var mymovies: Intent = Intent(applicationContext, MyMoviesList::class.java);
+            startActivity(mymovies);
             return true
         }
         return super.onOptionsItemSelected(item)

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="horizontal"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="5dp"
+    >
+<ImageView
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:id="@+id/movieimage"
+    android:src="@mipmap/ic_launcher"
+    />
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="8"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/movietitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Spiderman"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/movieyear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Rok produkcji: 2137"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/moviedirector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Reżyser: Jan Nowak"
+        android:textSize="18sp" />
+
+</LinearLayout>
+
+    <TextView
+        android:background="@drawable/star"
+        android:id="@+id/movierate"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="2"
+        android:paddingTop="16dp"
+        android:text="4.5"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
