@@ -55,6 +55,11 @@ class MyMoviesList : AppCompatActivity() {
         else if(id==R.id.menubuttonmymovies){
             return true
         }
+        else if(id==R.id.menubuttonmainpage){
+            var search: Intent = Intent(applicationContext, MainActivity::class.java);
+            startActivity(search);
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 }

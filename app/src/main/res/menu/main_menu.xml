@@ -16,5 +16,10 @@
         app:showAsAction="never"
         android:title="Moje filmy">
     </item>
+    <item
+        android:id="@+id/menubuttonmainpage"
+        app:showAsAction="never"
+        android:title="Wyszukaj...">
+    </item>
 
 </menu>

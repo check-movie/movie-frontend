@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(mymovies);
             return true
         }
+        else if(id==R.id.menubuttonmainpage){
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 }
