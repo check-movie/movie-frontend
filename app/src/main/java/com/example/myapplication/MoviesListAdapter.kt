@@ -19,13 +19,11 @@ class MoviesListAdapter (var mCtx: Context, var resources:Int, var items:List<Mo
         val movieimageView:ImageView = view.findViewById(R.id.movieimage)
         val titleTextView:TextView = view.findViewById(R.id.movietitle)
         val movieyearTextView:TextView = view.findViewById(R.id.movieyear)
-        val moviedirectorTextView:TextView = view.findViewById(R.id.moviedirector)
         val movierateTextView:TextView = view.findViewById(R.id.movierate)
 
         var mItem:MoviesListModel = items[position]
         Picasso.get().load(mItem.img).into(movieimageView)
         titleTextView.text = mItem.title
-        moviedirectorTextView.text = mItem.director
         movieyearTextView.text = mItem.year
         movierateTextView.text = mItem.rate
 

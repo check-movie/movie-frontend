@@ -33,15 +33,7 @@ android:padding="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="Rok produkcji: 2137"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/moviedirector"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Reżyser: Jan Nowak"
+        android:text="Data wydania: 2137-21-37"
         android:textSize="18sp" />
 
 </LinearLayout>

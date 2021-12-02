@@ -5,15 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ListView
-import com.squareup.picasso.Picasso
-import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
 
 class MyMoviesList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,13 +18,13 @@ class MyMoviesList : AppCompatActivity() {
         var list = mutableListOf<MoviesListModel>()
 
         //tymczasowe dane do testow, w przyszlosci wypelniane danymi z api
-        list.add(MoviesListModel("Film Pierwszy","1111","2","Reżyser Pierwszy","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",0))
-        list.add(MoviesListModel("Film Drugi","2222","2.5","Reżyser Drugi","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",1))
-        list.add(MoviesListModel("Film trzeci","3333","3","Reżyser Trzeci","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",2))
-        list.add(MoviesListModel("Film Czwarty","4444","3.5","Reżyser Czwarty","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",3))
-        list.add(MoviesListModel("Film Piąty","5555","4","Reżyser Piąty","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",4))
-        list.add(MoviesListModel("Film Szósty","6666","4.5","Reżyser Szósty","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",5))
-        list.add(MoviesListModel("Film Siódmy","7777","5","Reżyser Siódmy","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",6))
+        list.add(MoviesListModel("Film Pierwszy","1111","2","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",0))
+        list.add(MoviesListModel("Film Drugi","2222","2.5","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",1))
+        list.add(MoviesListModel("Film trzeci","3333","3","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",2))
+        list.add(MoviesListModel("Film Czwarty","4444","3.5","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",3))
+        list.add(MoviesListModel("Film Piąty","5555","4","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",4))
+        list.add(MoviesListModel("Film Szósty","6666","4.5","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",5))
+        list.add(MoviesListModel("Film Siódmy","7777","5","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",6))
 
         listview.adapter = MoviesListAdapter(this, R.layout.movierow, list)
     }
@@ -56,7 +48,7 @@ class MyMoviesList : AppCompatActivity() {
             return true
         }
         else if(id==R.id.menubuttonmainpage){
-            var search: Intent = Intent(applicationContext, MainActivity::class.java);
+            var search: Intent = Intent(applicationContext, SearchPanel::class.java);
             startActivity(search);
             return true
         }

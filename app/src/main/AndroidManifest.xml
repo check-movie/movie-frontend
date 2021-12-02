@@ -32,7 +32,10 @@
             android:name=".MyMoviesList"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MoviesSearchResult"
+            android:exported="false" />
+        <activity
+            android:name=".SearchPanel"
             android:exported="false" />
     </application>
 

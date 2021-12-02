@@ -31,7 +31,7 @@ class RegisterPanel : AppCompatActivity() {
             return true
         }
         else if(id==R.id.menubuttonmainpage){
-            var search: Intent = Intent(applicationContext, MainActivity::class.java);
+            var search: Intent = Intent(applicationContext, SearchPanel::class.java);
             startActivity(search);
             return true
         }
