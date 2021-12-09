@@ -13,21 +13,28 @@
         android:layout_height="match_parent"
         android:fillViewport="true" >
 
-            <LinearLayout android:id="@+id/scroll_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            <LinearLayout
+                android:id="@+id/scroll_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <ImageView
                     android:id="@+id/zdjecie"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
+                    android:paddingBottom="2dp"
                     app:srcCompat="@mipmap/ic_launcher" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp">
 
                     <TextView
                         android:id="@+id/a"
@@ -48,7 +55,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp">
 
                     <TextView
                         android:id="@+id/b"
@@ -69,7 +77,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp">
 
                     <TextView
                         android:id="@+id/c"
@@ -90,7 +99,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp">
 
                     <TextView
                         android:id="@+id/d"
@@ -112,7 +122,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp">
 
                     <TextView
                         android:id="@+id/e"
@@ -127,15 +138,16 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text=""
-                        android:autoLink="web|email"/>
+                        android:autoLink="web|email"
+                        android:text="" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp">
 
                     <TextView
                         android:id="@+id/f"
@@ -156,7 +168,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="2dp">
 
                     <TextView
                         android:id="@+id/g"
@@ -173,6 +186,20 @@
                         android:layout_weight="3"
                         android:text="" />
                 </LinearLayout>
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp">
+                    <Button
+                        android:id="@+id/addfav"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Dodaj do ulubionych" />
+                </LinearLayout>
+            </LinearLayout>
+
     </ScrollView>
 </LinearLayout>

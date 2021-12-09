@@ -9,7 +9,7 @@
     <item
         android:id="@+id/menubuttonmymovies"
         app:showAsAction="never"
-        android:title="Moje filmy">
+        android:title="Ulubione filmy">
     </item>
     <item
         android:id="@+id/menubuttonmainpage"
