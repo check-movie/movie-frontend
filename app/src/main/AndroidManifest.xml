@@ -14,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Logout"
+            android:exported="false" />
+        <activity
+            android:name=".LoginResult"
+            android:exported="false" />
+        <activity
             android:name=".MovieDetails"
             android:exported="false" />
         <activity

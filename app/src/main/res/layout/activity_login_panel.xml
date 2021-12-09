@@ -7,6 +7,48 @@
     tools:context=".LoginPanel">
 
     <TextView
+        android:id="@+id/loginbladhaslo"
+        android:layout_width="331dp"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:text="Wprowadź poprawne hasło (min. 6 znaków)!"
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/loginblad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginpassword"
+        app:layout_constraintVertical_bias="0.275" />
+
+    <TextView
+        android:id="@+id/loginblad"
+        android:layout_width="302dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="260dp"
+        android:gravity="center"
+        android:text="Popraw powyższe błędy!"
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/loginbladmail"
+        android:layout_width="283dp"
+        android:layout_height="27dp"
+        android:gravity="center"
+        android:text="Wprowadź prawidłowy adres email!"
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginmail"
+        app:layout_constraintVertical_bias="0.333" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="156dp"
         android:layout_height="62dp"
@@ -19,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146" />
+        app:layout_constraintVertical_bias="0.067" />
 
     <TextView
         android:id="@+id/textView2"
@@ -30,13 +72,13 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintVertical_bias="0.048" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/loginmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -45,10 +87,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.048"
+        app:layout_constraintVertical_bias="0.028"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -63,10 +105,10 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.352" />
+        app:layout_constraintVertical_bias="0.283" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/loginpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -75,14 +117,14 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.068"
+        app:layout_constraintVertical_bias="0.021"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/loginbutton"
+        android:id="@+id/logindo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Zaloguj się"
@@ -91,5 +133,5 @@
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.648" />
+        app:layout_constraintVertical_bias="0.671" />
 </androidx.constraintlayout.widget.ConstraintLayout>

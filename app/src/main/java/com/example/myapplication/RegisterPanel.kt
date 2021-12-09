@@ -12,7 +12,12 @@ class RegisterPanel : AppCompatActivity() {
         setContentView(R.layout.activity_register_panel)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu,menu);
+        if(UserToken=="") {
+            menuInflater.inflate(R.menu.main_menu, menu);
+        }
+        else{
+            menuInflater.inflate(R.menu.main_menu_logged, menu);
+        }
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -33,6 +38,11 @@ class RegisterPanel : AppCompatActivity() {
         else if(id==R.id.menubuttonmainpage){
             var search: Intent = Intent(applicationContext, SearchPanel::class.java);
             startActivity(search);
+            return true
+        }
+        else if(id==R.id.menubuttonlogout){
+            var wylog: Intent = Intent(applicationContext, Logout::class.java)
+            startActivity(wylog)
             return true
         }
         return super.onOptionsItemSelected(item)
