@@ -14,6 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".RegisterResult"
+            android:exported="false" />
+        <activity
             android:name=".Logout"
             android:exported="false" />
         <activity

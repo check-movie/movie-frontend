@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_search_panel.*
 
 class SearchPanel : AppCompatActivity() {
@@ -26,10 +27,17 @@ class SearchPanel : AppCompatActivity() {
             }
         }
         searchFilm.setOnClickListener() {
-            var search: Intent = Intent(applicationContext, MoviesSearchResult::class.java).apply {
-                putExtra("searchdata", titlesearch.text.toString())
+            if(titlesearch.text.toString().length>0) {
+                var search: Intent =
+                    Intent(applicationContext, MoviesSearchResult::class.java).apply {
+                        putExtra("searchdata", titlesearch.text.toString())
+                    }
+                startActivity(search)
             }
-            startActivity(search)
+            else{
+                Toast.makeText(this, "Wprowadź tytuł do wyszukania!",
+                    Toast.LENGTH_LONG).show();
+            }
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
