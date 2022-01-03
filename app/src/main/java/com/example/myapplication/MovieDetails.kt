@@ -1,17 +1,22 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
+import java.net.URLEncoder
 
 class MovieDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +59,50 @@ class MovieDetails : AppCompatActivity() {
         datawyd.text = jsonObject.optString("release_date")
         srocen.text = jsonObject.optString("vote_average")
         ilocen.text = jsonObject.optString("vote_count")
+        if(UserToken=="") {
+            addfav.setVisibility(View.INVISIBLE);
+        }
+        else{
+            addfav.setVisibility(View.VISIBLE);
+        }
+
+        addfav.setOnClickListener{
+            val add = Thread(Runnable {
+                try {
+                    var reqParam = URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(tytul.text.toString(), "UTF-8")
+                    reqParam += "&" + URLEncoder.encode("origin_title", "UTF-8") + "=" + URLEncoder.encode(origtytul.text.toString(), "UTF-8")
+                    reqParam += "&" + URLEncoder.encode("poster", "UTF-8") + "=" + URLEncoder.encode(("https://image.tmdb.org/t/p/original"+jsonObject.optString("poster_path")).toString(), "UTF-8")
+                    reqParam += "&" + URLEncoder.encode("tmdb_rating", "UTF-8") + "=" + URLEncoder.encode(srocen.text.toString(), "UTF-8")
+                    reqParam += "&" + URLEncoder.encode("tmdb_total_rates", "UTF-8") + "=" + URLEncoder.encode(ilocen.text.toString(), "UTF-8")
+                    reqParam += "&" + URLEncoder.encode("plot", "UTF-8") + "=" + URLEncoder.encode(opis.text.toString(), "UTF-8")
+                    reqParam += "&" + URLEncoder.encode("homepage", "UTF-8") + "=" + URLEncoder.encode(homepage.text.toString(), "UTF-8")
+                    reqParam += "&" + URLEncoder.encode("release_date", "UTF-8") + "=" + URLEncoder.encode(datawyd.text.toString(), "UTF-8")
+                    val mURL = URL("https://citygame.ga/api/movie/store")
+
+                    with(mURL.openConnection() as HttpURLConnection) {
+                        setRequestProperty("Authorization", "Bearer $UserToken")
+                        requestMethod = "POST"
+
+                        val wr = OutputStreamWriter(getOutputStream());
+                        wr.write(reqParam);
+                        wr.flush();
+
+                        var addresult: Intent = Intent(applicationContext, AddFavResult::class.java).apply{
+                            putExtra("EXTRA_RESPONSE", responseCode)
+                        }
+                        startActivity(addresult)
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            })
+            add.start()
+        }
+
+
+
+
+
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         if(UserToken=="") {

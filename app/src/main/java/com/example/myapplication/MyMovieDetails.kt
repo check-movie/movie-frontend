@@ -1,32 +1,37 @@
 package com.example.myapplication
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ListView
-import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_my_movie_details.*
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
+import java.net.URLEncoder
 
-class MoviesSearchResult : AppCompatActivity(){
+class MyMovieDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movies_list)
+        setContentView(R.layout.activity_my_movie_details)
 
         var jsonStr: String = ""
 
-        val getmovies = Thread(Runnable {
+        val getmovie = Thread(Runnable {
             try {
-                var link:String = "https://api.themoviedb.org/3/search/movie?api_key=9ed1ff5e176006301b0927dd2aefe12c&language=pl-PL&include_adult=true&query="+intent.getStringExtra("searchdata").toString();
-                val mURL = URL(link)
-
+                //TODO connect to correct endpoint
+                val mURL = URL("https://api.themoviedb.org/3/movie/"+intent.getIntExtra("id", 557).toString()+"?api_key=9ed1ff5e176006301b0927dd2aefe12c&language=pl-PL")
+                //
                 with(mURL.openConnection() as HttpURLConnection) {
+                    setRequestProperty("Authorization", "Bearer $UserToken")
                     requestMethod = "GET"
 
                     BufferedReader(InputStreamReader(inputStream)).use {
@@ -45,37 +50,21 @@ class MoviesSearchResult : AppCompatActivity(){
                 e.printStackTrace()
             }
         })
-        getmovies.start()
-        while(getmovies.isAlive){}
+        getmovie.start()
+        while(getmovie.isAlive){}
 
-        var listview = findViewById<ListView>(R.id.listView)
-        var list = mutableListOf<MoviesListModel>()
-
-        val jsonObject = JSONObject(jsonStr)
-        val jsonArray = jsonObject.optJSONArray("results")
-
-        for(i in 0 until jsonArray.length()){
-            val jsonObject = jsonArray.getJSONObject(i)
-            list.add(MoviesListModel(jsonObject.optString("title"),"Premiera: "+jsonObject.optString("release_date"),jsonObject.optString("vote_average"),"https://image.tmdb.org/t/p/original"+jsonObject.optString("poster_path"),jsonObject.optString("id").toInt()))
-        }
-        listview.adapter = MoviesListAdapter(this, R.layout.movierow, list)
-
-
-
-        listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position:Int, id:Long ->
-            var details: Intent = Intent(applicationContext, MovieDetails::class.java)
-            details.putExtra("id", list.get(position).id)
-            startActivity(details)
-        }
-
+        var jsonObject = JSONObject(jsonStr)
+        Picasso.get().load(jsonObject.optString("poster")).into(zdjecie)
+        tytul.text = jsonObject.optString("title")
+        origtytul.text = jsonObject.optString("original_title")
+        opis.text = jsonObject.optString("overview")
+        homepage.text = jsonObject.optString("homepage")
+        datawyd.text = jsonObject.optString("release_date")
+        srocen.text = jsonObject.optString("vote_average")
+        ilocen.text = jsonObject.optString("vote_count")
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if(UserToken=="") {
-            menuInflater.inflate(R.menu.main_menu, menu);
-        }
-        else{
-            menuInflater.inflate(R.menu.main_menu_logged, menu);
-        }
+        menuInflater.inflate(R.menu.main_menu_logged, menu);
         return true
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

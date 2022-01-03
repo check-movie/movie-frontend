@@ -5,26 +5,65 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ListView
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 
 class MyMoviesList : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movies_list)
 
-        //TODO laczenie z api, pobieranie filmow do listy
+        var jsonStr: String = ""
+
+        val getmovies = Thread(Runnable {
+            try {
+                val mURL = URL("https://citygame.ga/api/movies/show")
+                with(mURL.openConnection() as HttpURLConnection) {
+
+                    setRequestProperty("Authorization", "Bearer $UserToken")
+                    requestMethod = "GET"
+
+                    BufferedReader(InputStreamReader(inputStream)).use {
+                        val response = StringBuffer()
+
+                        var inputLine = it.readLine()
+                        while (inputLine != null) {
+                            response.append(inputLine)
+                            inputLine = it.readLine()
+                        }
+                        it.close()
+                        jsonStr = response.toString()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        })
+        getmovies.start()
+        while(getmovies.isAlive){}
 
         var listview = findViewById<ListView>(R.id.listView)
         var list = mutableListOf<MoviesListModel>()
 
-        //tymczasowe dane do testow, w przyszlosci wypelniane danymi z api
-        list.add(MoviesListModel("Film Pierwszy","1111","2","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",0))
-        list.add(MoviesListModel("Film Drugi","2222","2.5","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",1))
-        list.add(MoviesListModel("Film trzeci","3333","3","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",2))
-        list.add(MoviesListModel("Film Czwarty","4444","3.5","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",3))
-        list.add(MoviesListModel("Film Piąty","5555","4","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",4))
-        list.add(MoviesListModel("Film Szósty","6666","4.5","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",5))
-        list.add(MoviesListModel("Film Siódmy","7777","5","https://w7.pngwing.com/pngs/130/1021/png-transparent-movie-logo-movie-logo-film-tape-cinema.png",6))
+        val jsonArray = JSONArray(jsonStr)
+
+        for(i in 0 until jsonArray.length()){
+            val jsonObject = jsonArray.getJSONObject(i)
+            list.add(MoviesListModel(jsonObject.optString("title"),"Premiera: "+jsonObject.optString("release_date"),jsonObject.optString("check_movie_rating"),jsonObject.optString("poster"),jsonObject.optString("id").toInt()))
+        }
+
+        listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position:Int, id:Long ->
+            var details: Intent = Intent(applicationContext, MyMovieDetails::class.java)
+            details.putExtra("id", list.get(position).id)
+            startActivity(details)
+        }
 
         listview.adapter = MoviesListAdapter(this, R.layout.movierow, list)
     }
