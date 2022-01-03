@@ -192,12 +192,27 @@
                     android:orientation="horizontal"
                     android:paddingLeft="25dp"
                     android:paddingRight="25dp">
-                    <Button
-                        android:id="@+id/addfav"
-                        android:layout_width="0dp"
+
+                        <Button
+                            android:id="@+id/comments"
+                            android:layout_width="1dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:text="Przejdź do komentarzy" />
+
+                    <TextView
+                        android:id="@+id/divider"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Dodaj do ulubionych" />
+                        android:text="" />
+
+                    <Button
+                            android:id="@+id/addfav"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="25"
+                            android:text="Dodaj do ulubionych" />
                 </LinearLayout>
             </LinearLayout>
 
