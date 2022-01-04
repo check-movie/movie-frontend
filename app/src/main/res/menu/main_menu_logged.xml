@@ -16,5 +16,11 @@
         app:showAsAction="never"
         android:title="Wyszukaj...">
     </item>
+    <item
+        android:id="@+id/refresh"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_refresh_24"
+        android:title="Odśwież">
+    </item>
 
 </menu>

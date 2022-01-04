@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
+import kotlinx.android.synthetic.main.activity_comment_section.*
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -61,6 +63,12 @@ class CommentSection : AppCompatActivity() {
             list.add(CommentModel(jsonObject.optString("opinion"),jsonObject.optString("author"),jsonObject.optString("author_avatar"),jsonObject.optString("created_at"),jsonObject.optString("id").toInt()))
         }
         listview.adapter = CommentAdapter(this, R.layout.commentrow, list)
+        addcomment.setOnClickListener {
+            var addcomm: Intent = Intent(applicationContext, CommentAdd::class.java)
+            addcomm.putExtra("id", intent.getIntExtra("id", 1))
+            startActivity(addcomm)
+
+        }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         if(UserToken=="") {
@@ -96,6 +104,11 @@ class CommentSection : AppCompatActivity() {
         else if(id==R.id.menubuttonlogout){
             var wylog: Intent = Intent(applicationContext, Logout::class.java)
             startActivity(wylog)
+            return true
+        }
+        else if(id==R.id.refresh){
+            finish();
+            startActivity(getIntent());
             return true
         }
         return super.onOptionsItemSelected(item)

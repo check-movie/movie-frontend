@@ -26,7 +26,8 @@
         <entry key="..\:/Users/Malina/Documents/GitHub/movie2/movie-frontend/app/src/main/res/menu/main_menu.xml" value="0.25" />
         <entry key="..\:/Users/Malina/Documents/GitHub/movie2/movie-frontend/app/src/main/res/menu/main_menu_logged.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/Malina/Documents/GitHub/movie2/movie-frontend/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.20104166666666667" />
-        <entry key="..\:/Users/raf79/AndroidStudioProjects/movie-frontend/app/src/main/res/layout/activity_comment_section.xml" value="0.18541666666666667" />
+        <entry key="..\:/Users/raf79/AndroidStudioProjects/movie-frontend/app/src/main/res/layout/activity_comment_add.xml" value="0.2708333333333333" />
+        <entry key="..\:/Users/raf79/AndroidStudioProjects/movie-frontend/app/src/main/res/layout/activity_comment_section.xml" value="0.16894630192502533" />
         <entry key="..\:/Users/raf79/AndroidStudioProjects/movie-frontend/app/src/main/res/layout/activity_login_panel.xml" value="0.25" />
         <entry key="..\:/Users/raf79/AndroidStudioProjects/movie-frontend/app/src/main/res/layout/activity_login_result.xml" value="0.16894630192502533" />
         <entry key="..\:/Users/raf79/AndroidStudioProjects/movie-frontend/app/src/main/res/layout/activity_logout.xml" value="0.16210739614994935" />

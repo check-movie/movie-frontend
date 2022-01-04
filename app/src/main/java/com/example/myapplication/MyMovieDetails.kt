@@ -112,6 +112,11 @@ class MyMovieDetails : AppCompatActivity() {
             startActivity(wylog)
             return true
         }
+        else if(id==R.id.refresh){
+            finish();
+            startActivity(getIntent());
+            return true
+        }
         return super.onOptionsItemSelected(item)
     }
 }
