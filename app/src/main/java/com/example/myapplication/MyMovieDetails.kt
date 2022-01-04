@@ -52,7 +52,6 @@ class MyMovieDetails : AppCompatActivity() {
         getmovie.start()
         while(getmovie.isAlive){}
 
-        //var jsonObject = JSONObject(jsonStr)
         var jsonArray = JSONArray(jsonStr)
         var jsonObject = jsonArray.getJSONObject(0)
 
