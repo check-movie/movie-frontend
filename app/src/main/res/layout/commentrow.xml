@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="horizontal"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="5dp"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10">
+<ImageView
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:id="@+id/authoravatar"
+    android:src="@mipmap/ic_launcher"
+    android:layout_marginLeft="1dp"
+    android:layout_marginTop="1dp"
+    />
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="9"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:text="Jan Nowak"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="3dp"
+        android:text="2022-01-04 00:24:27"
+        android:textSize="16sp" />
+</LinearLayout>
+            <Button
+                android:padding="0dp"
+                android:id="@+id/editcomment"
+                android:layout_weight="0.5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="Edytuj"
+                android:textSize="10sp"/>
+            <Button
+                android:padding="0dp"
+                android:id="@+id/deletecomment"
+                android:layout_weight="0.5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="Usuń"
+                android:textSize="10sp"/>
+
+</LinearLayout>
+        <TextView
+            android:id="@+id/opinion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bardzo fajny film, aczkolwiek jeszcze muszę dokładniej obejrzeć, ale myślę że to długo nie potrwa, później napiszę coś więcej"
+            android:textSize="18sp" />
+</LinearLayout>
+</LinearLayout>
