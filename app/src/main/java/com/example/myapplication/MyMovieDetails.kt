@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.view.View
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_my_movie_details.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -27,9 +28,7 @@ class MyMovieDetails : AppCompatActivity() {
 
         val getmovie = Thread(Runnable {
             try {
-                //TODO connect to correct endpoint
-                val mURL = URL("https://api.themoviedb.org/3/movie/"+intent.getIntExtra("id", 557).toString()+"?api_key=9ed1ff5e176006301b0927dd2aefe12c&language=pl-PL")
-                //
+                val mURL = URL("https://citygame.ga/api/movies/"+intent.getIntExtra("id", 557).toString()+"/show")
                 with(mURL.openConnection() as HttpURLConnection) {
                     setRequestProperty("Authorization", "Bearer $UserToken")
                     requestMethod = "GET"
@@ -53,15 +52,21 @@ class MyMovieDetails : AppCompatActivity() {
         getmovie.start()
         while(getmovie.isAlive){}
 
-        var jsonObject = JSONObject(jsonStr)
+        //var jsonObject = JSONObject(jsonStr)
+        var jsonArray = JSONArray(jsonStr)
+        var jsonObject = jsonArray.getJSONObject(0)
+
         Picasso.get().load(jsonObject.optString("poster")).into(zdjecie)
         tytul.text = jsonObject.optString("title")
-        origtytul.text = jsonObject.optString("original_title")
-        opis.text = jsonObject.optString("overview")
+        origtytul.text = jsonObject.optString("origin_title")
+        opis.text = jsonObject.optString("plot")
         homepage.text = jsonObject.optString("homepage")
         datawyd.text = jsonObject.optString("release_date")
-        srocen.text = jsonObject.optString("vote_average")
-        ilocen.text = jsonObject.optString("vote_count")
+        srocen.text = jsonObject.optString("tmdb_rating")
+        ilocen.text = jsonObject.optString("tmdb_total_rates")
+        srocencheckmovie.text = jsonObject.optString("check_movie_rating")
+        ilocencheckmovie.text = jsonObject.optString("rates_time")
+
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu_logged, menu);
