@@ -66,6 +66,15 @@ class MyMovieDetails : AppCompatActivity() {
         ilocen.text = jsonObject.optString("tmdb_total_rates")
         srocencheckmovie.text = jsonObject.optString("check_movie_rating")
         ilocencheckmovie.text = jsonObject.optString("rates_time")
+        if(tytul.text=="null") tytul.text=""
+        if(origtytul.text=="null") origtytul.text=""
+        if(opis.text=="null") opis.text=""
+        if(homepage.text=="null") homepage.text=""
+        if(datawyd.text=="null") datawyd.text=""
+        if(srocen.text=="null") srocen.text=""
+        if(ilocen.text=="null") ilocen.text=""
+        if(srocencheckmovie.text=="null") srocencheckmovie.text=""
+        if(ilocencheckmovie.text=="null") ilocencheckmovie.text=""
 
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
