@@ -28,7 +28,7 @@ class MyMovieDetails : AppCompatActivity() {
 
         val getmovie = Thread(Runnable {
             try {
-                val mURL = URL("https://citygame.ga/api/movies/"+intent.getIntExtra("id", 557).toString()+"/show")
+                val mURL = URL("https://citygame.ga/api/movies/"+intent.getIntExtra("id", 1).toString()+"/show")
                 with(mURL.openConnection() as HttpURLConnection) {
                     setRequestProperty("Authorization", "Bearer $UserToken")
                     requestMethod = "GET"
@@ -75,6 +75,11 @@ class MyMovieDetails : AppCompatActivity() {
         if(srocencheckmovie.text=="null") srocencheckmovie.text=""
         if(ilocencheckmovie.text=="null") ilocencheckmovie.text=""
 
+        comments.setOnClickListener {
+            var comms: Intent = Intent(applicationContext, CommentSection::class.java)
+            comms.putExtra("id", intent.getIntExtra("id", 1))
+            startActivity(comms)
+        }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu_logged, menu);

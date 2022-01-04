@@ -43,5 +43,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation("io.coil-kt:coil:0.12.0")
+    implementation("io.coil-kt:coil-svg:0.12.0")
 
 }
