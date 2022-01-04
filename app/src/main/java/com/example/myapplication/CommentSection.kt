@@ -84,6 +84,8 @@ class CommentSection : AppCompatActivity() {
             return true
         }
         else if(id==R.id.menubuttonmymovies){
+            var mymovies: Intent = Intent(applicationContext, MyMoviesList::class.java);
+            startActivity(mymovies);
             return true
         }
         else if(id==R.id.menubuttonmainpage){
