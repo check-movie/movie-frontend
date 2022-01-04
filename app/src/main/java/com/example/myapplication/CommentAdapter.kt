@@ -31,9 +31,7 @@ class CommentAdapter (var mCtx: Context, var resources:Int, var items:List<Comme
 
         return view
     }
-}
-
-private fun ImageView.loadSvg(url: String) {
+fun ImageView.loadSvg(url: String) {
     val imageLoader = ImageLoader.Builder(this.context)
         .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
         .build()
@@ -46,4 +44,5 @@ private fun ImageView.loadSvg(url: String) {
         .build()
 
     imageLoader.enqueue(request)
+}
 }
