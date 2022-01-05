@@ -56,7 +56,7 @@ class MyMoviesList : AppCompatActivity() {
 
         for(i in 0 until jsonArray.length()){
             val jsonObject = jsonArray.getJSONObject(i)
-            list.add(MoviesListModel(jsonObject.optString("title"),"Premiera: "+jsonObject.optString("release_date"),jsonObject.optString("check_movie_rating"),jsonObject.optString("poster"),jsonObject.optString("id").toInt()))
+            list.add(MoviesListModel(jsonObject.optString("title"),"Premiera: "+ if(jsonObject.optString("release_date")=="null") "brak danych" else jsonObject.optString("release_date"),jsonObject.optString("check_movie_rating"),jsonObject.optString("poster"),jsonObject.optString("id").toInt()))
         }
 
         listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position:Int, id:Long ->

@@ -56,24 +56,16 @@ class MyMovieDetails : AppCompatActivity() {
         var jsonObject = jsonArray.getJSONObject(0)
 
         Picasso.get().load(jsonObject.optString("poster")).into(zdjecie)
-        tytul.text = jsonObject.optString("title")
-        origtytul.text = jsonObject.optString("origin_title")
-        opis.text = jsonObject.optString("plot")
-        homepage.text = jsonObject.optString("homepage")
-        datawyd.text = jsonObject.optString("release_date")
-        srocen.text = jsonObject.optString("tmdb_rating")
-        ilocen.text = jsonObject.optString("tmdb_total_rates")
-        srocencheckmovie.text = jsonObject.optString("check_movie_rating")
-        ilocencheckmovie.text = jsonObject.optString("rates_time")
-        if(tytul.text=="null") tytul.text=""
-        if(origtytul.text=="null") origtytul.text=""
-        if(opis.text=="null") opis.text=""
-        if(homepage.text=="null") homepage.text=""
-        if(datawyd.text=="null") datawyd.text=""
-        if(srocen.text=="null") srocen.text=""
-        if(ilocen.text=="null") ilocen.text=""
-        if(srocencheckmovie.text=="null") srocencheckmovie.text=""
-        if(ilocencheckmovie.text=="null") ilocencheckmovie.text=""
+        if(jsonObject.optString("title")=="null") tytul.text="" else tytul.text = jsonObject.optString("title")
+        if(jsonObject.optString("origin_title")=="null") origtytul.text="" else origtytul.text = jsonObject.optString("origin_title")
+        if(jsonObject.optString("plot")=="null") opis.text="" else opis.text = jsonObject.optString("plot")
+        if(jsonObject.optString("homepage")=="null") homepage.text="" else homepage.text = jsonObject.optString("homepage")
+        if(jsonObject.optString("release_date")=="null") datawyd.text="" else datawyd.text = jsonObject.optString("release_date")
+        if(jsonObject.optString("tmdb_rating")=="null") srocen.text="" else srocen.text = jsonObject.optString("tmdb_rating")
+        if(jsonObject.optString("tmdb_total_rates")=="null") ilocen.text="" else ilocen.text = jsonObject.optString("tmdb_total_rates")
+        if(jsonObject.optString("check_movie_rating")=="null") srocencheckmovie.text="" else srocencheckmovie.text = jsonObject.optString("check_movie_rating")
+        if(jsonObject.optString("rates_time")=="null") ilocencheckmovie.text="" else ilocencheckmovie.text = jsonObject.optString("rates_time")
+
 
         comments.setOnClickListener {
             var comms: Intent = Intent(applicationContext, CommentSection::class.java)
