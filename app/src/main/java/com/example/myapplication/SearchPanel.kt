@@ -40,6 +40,11 @@ class SearchPanel : AppCompatActivity() {
             }
         }
     }
+    override fun onRestart() {
+        super.onRestart()
+        finish();
+        startActivity(getIntent());
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         if(UserToken=="") {
             menuInflater.inflate(R.menu.main_menu, menu);

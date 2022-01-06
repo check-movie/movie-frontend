@@ -29,16 +29,7 @@
             android:name=".MyMovieDetails"
             android:exported="false" />
         <activity
-            android:name=".AddFavResult"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterResult"
-            android:exported="false" />
-        <activity
             android:name=".Logout"
-            android:exported="false" />
-        <activity
-            android:name=".LoginResult"
             android:exported="false" />
         <activity
             android:name=".MovieDetails"

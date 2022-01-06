@@ -232,12 +232,12 @@ android:orientation="vertical">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp">
+
+            android:weightSum="51">
 
             <Button
                 android:id="@+id/comments"
-                android:layout_width="1dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="25"
                 android:text="Komentarze" />
@@ -248,13 +248,32 @@ android:orientation="vertical">
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="" />
-
+<!--
             <Button
                 android:id="@+id/addfav"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="25"
-                android:text="Oceń! " />
+                android:text="Oceń " />
+                -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="25">
+
+                <RatingBar
+                    android:id="@+id/ratingbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleX="0.75"
+                    android:transformPivotX="0dp"
+                    android:layout_marginRight="-100dp"
+                    android:max="5"
+                    android:numStars="5"
+                    android:progressTint="@color/Gold"
+                    android:secondaryProgressTint="@color/Gold"
+                    android:stepSize="1" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

@@ -14,6 +14,7 @@ import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login_panel.*
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -77,7 +78,7 @@ class LoginPanel : AppCompatActivity() {
             }
             else
                 loginblad.setVisibility(View.INVISIBLE)
-
+            var code = 1
             val login = Thread(Runnable {
                 try {
                     var reqParam = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(loginmail.text.toString(), "UTF-8")
@@ -90,11 +91,10 @@ class LoginPanel : AppCompatActivity() {
                         val wr = OutputStreamWriter(getOutputStream());
                         wr.write(reqParam);
                         wr.flush();
+                        code=responseCode
 
                         if(responseCode!=200){
                             UserToken = ""
-                            var loginresult: Intent = Intent(applicationContext, LoginResult::class.java)
-                            startActivity(loginresult)
                             return@with
                         }
 
@@ -112,8 +112,6 @@ class LoginPanel : AppCompatActivity() {
                             val editor: SharedPreferences.Editor = sharedPreferences.edit()
                             editor.putString(SHAREDPREFSTOKEN, token)
                             editor.apply()
-                            var loginresult: Intent = Intent(applicationContext, LoginResult::class.java)
-                            startActivity(loginresult)
                         }
                     }
                 } catch (e: Exception) {
@@ -122,7 +120,16 @@ class LoginPanel : AppCompatActivity() {
             })
 
             login.start()
-
+            while(login.isAlive){}
+            if(code==200){
+                Toast.makeText(this, "Zalogowano prawidłowo.",
+                    Toast.LENGTH_LONG).show();
+                finish()
+            }
+            else {
+                Toast.makeText(this, "Logowanie nie powiodło się. Spróbuj ponownie.",
+                    Toast.LENGTH_LONG).show();
+            }
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

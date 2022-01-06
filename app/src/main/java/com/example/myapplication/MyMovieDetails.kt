@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.MotionEvent
 import android.view.View
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_my_movie_details.*
@@ -18,6 +19,11 @@ import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLEncoder
+import android.widget.Toast
+
+import android.widget.RatingBar
+import android.widget.RatingBar.OnRatingBarChangeListener
+
 
 class MyMovieDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,14 +71,86 @@ class MyMovieDetails : AppCompatActivity() {
         if(jsonObject.optString("tmdb_total_rates")=="null") ilocen.text="" else ilocen.text = jsonObject.optString("tmdb_total_rates")
         if(jsonObject.optString("check_movie_rating")=="null") srocencheckmovie.text="" else srocencheckmovie.text = jsonObject.optString("check_movie_rating")
         if(jsonObject.optString("rates_time")=="null") ilocencheckmovie.text="" else ilocencheckmovie.text = jsonObject.optString("rates_time")
-
-
+        var rateid = 0
+        var jsonArrayv=jsonObject.getJSONArray("rates")
+        if(jsonArrayv.length()>0){
+            var jsonObjectv = jsonArrayv.getJSONObject(0)
+            ratingbar.rating=jsonObjectv.optString("rate").toFloat()
+            rateid=jsonObjectv.optString("id").toInt()
+        }
         comments.setOnClickListener {
             var comms: Intent = Intent(applicationContext, CommentSection::class.java)
             comms.putExtra("id", intent.getIntExtra("id", 1))
             startActivity(comms)
         }
+        ratingbar.setOnRatingBarChangeListener(OnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            if(rateid==0){
+                var code = 1
+                    val addrate = Thread(Runnable {
+                        try {
+                            var reqParam = URLEncoder.encode("rate", "UTF-8") + "=" + URLEncoder.encode(ratingbar.rating.toInt().toString(), "UTF-8")
+                            val mURL = URL("https://citygame.ga/api/movie/"+intent.getIntExtra("id", 1)+"/rate")
+
+                            with(mURL.openConnection() as HttpURLConnection) {
+                                setRequestProperty("Authorization", "Bearer $UserToken")
+                                requestMethod = "POST"
+
+                                val wr = OutputStreamWriter(getOutputStream());
+                                wr.write(reqParam);
+                                wr.flush();
+                                code=responseCode;
+                            }
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        }
+                    })
+                    addrate.start()
+                    while(addrate.isAlive){}
+                    if(code==200){
+                        Toast.makeText(this, "Ocena została dodana prawidłowo.",
+                            Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        Toast.makeText(this, "Dodanie oceny nie powiodło się. Spróbuj ponownie.",
+                            Toast.LENGTH_LONG).show();
+                    }
+                finish();
+                startActivity(getIntent());
+            }
+            else{
+                var code = 1
+                val editrate = Thread(Runnable {
+                    try {
+                        var reqParam = URLEncoder.encode("rate", "UTF-8") + "=" + URLEncoder.encode(ratingbar.rating.toInt().toString(), "UTF-8")
+                        val mURL = URL("https://citygame.ga/api/movie/rate/"+rateid.toString()+"/update")
+
+                        with(mURL.openConnection() as HttpURLConnection) {
+                            setRequestProperty("Authorization", "Bearer $UserToken")
+                            requestMethod = "POST"
+
+                            val wr = OutputStreamWriter(getOutputStream());
+                            wr.write(reqParam);
+                            wr.flush();
+                            code=responseCode;
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                })
+                editrate.start()
+                while(editrate.isAlive){}
+                if(code==200){
+                    Toast.makeText(this, "Ocena została zmieniona prawidłowo.",
+                        Toast.LENGTH_LONG).show();
+                }
+                else {
+                    Toast.makeText(this, "Zmiana oceny nie powiodła się. Spróbuj ponownie.",
+                        Toast.LENGTH_LONG).show();
+                }
+            }
+        })
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu_logged, menu);
         return true

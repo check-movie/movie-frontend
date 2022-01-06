@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_movie_details.*
 import org.json.JSONObject
@@ -67,6 +68,7 @@ class MovieDetails : AppCompatActivity() {
         }
 
         addfav.setOnClickListener{
+            var code = 1
             val add = Thread(Runnable {
                 try {
                     var reqParam = URLEncoder.encode("title", "UTF-8") + "=" + URLEncoder.encode(tytul.text.toString(), "UTF-8")
@@ -86,17 +88,26 @@ class MovieDetails : AppCompatActivity() {
                         val wr = OutputStreamWriter(getOutputStream());
                         wr.write(reqParam);
                         wr.flush();
-
-                        var addresult: Intent = Intent(applicationContext, AddFavResult::class.java).apply{
-                            putExtra("EXTRA_RESPONSE", responseCode)
-                        }
-                        startActivity(addresult)
+                        code=responseCode;
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             })
             add.start()
+            while(add.isAlive){}
+            if(code==200){
+                Toast.makeText(this, "Film został prawidłowo dodany do ulubionych.",
+                    Toast.LENGTH_LONG).show();
+            }
+            else if(code==403) {
+                Toast.makeText(this, "Posiadasz już ten film w ulubionych.",
+                    Toast.LENGTH_LONG).show();
+            }
+            else {
+                Toast.makeText(this, "Dodanie filmu do ulubionych nie powiodło się. Spróbuj ponownie.",
+                    Toast.LENGTH_LONG).show();
+            }
         }
 
 

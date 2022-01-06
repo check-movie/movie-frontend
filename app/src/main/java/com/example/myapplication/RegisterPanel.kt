@@ -11,6 +11,7 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.KeyEvent
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_register_panel.*
 import java.io.DataOutputStream
 import java.io.OutputStreamWriter
@@ -96,7 +97,7 @@ class RegisterPanel : AppCompatActivity() {
             }
             else
                 regerr.setVisibility(View.INVISIBLE)
-
+            var code = 1
             val register = Thread(Runnable {
                 try {
                     var reqParam = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(editTextTextEmailAddress.text.toString(), "UTF-8")
@@ -112,17 +113,23 @@ class RegisterPanel : AppCompatActivity() {
                         var buffer:ByteArray = reqParam.toByteArray()
                         wr.write(buffer);
                         wr.flush();
-
-                        var registerresult: Intent = Intent(applicationContext, RegisterResult::class.java).apply{
-                            putExtra("EXTRA_RESPONSE", responseCode)
-                        }
-                        startActivity(registerresult)
+                        code=responseCode
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             })
             register.start()
+            while(register.isAlive){}
+            if(code==200){
+                Toast.makeText(this, "Zarejestrowano prawidłowo.",
+                    Toast.LENGTH_LONG).show();
+                finish()
+            }
+            else {
+                Toast.makeText(this, "Rejestracja nie powiodła się. Spróbuj ponownie.",
+                    Toast.LENGTH_LONG).show();
+            }
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

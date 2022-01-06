@@ -19,6 +19,7 @@ class Logout : AppCompatActivity() {
         mainpage.setOnClickListener {
             var strgl: Intent = Intent(applicationContext, SearchPanel::class.java)
             startActivity(strgl)
+            finish()
         }
     }
 }
