@@ -1,18 +1,13 @@
-package com.example.myapplication
+package com.example.myapplication.Movie.MyMovie
 
-import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.MotionEvent
-import android.view.View
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_my_movie_details.*
 import org.json.JSONArray
-import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.io.OutputStreamWriter
@@ -21,8 +16,14 @@ import java.net.URL
 import java.net.URLEncoder
 import android.widget.Toast
 
-import android.widget.RatingBar
 import android.widget.RatingBar.OnRatingBarChangeListener
+import com.example.myapplication.*
+import com.example.myapplication.Comment.CommentSection
+import com.example.myapplication.Main.SearchPanel
+import com.example.myapplication.User.LoginPanel
+import com.example.myapplication.User.Logout
+import com.example.myapplication.User.RegisterPanel
+import com.example.myapplication.User.UserToken
 
 
 class MyMovieDetails : AppCompatActivity() {
@@ -157,32 +158,32 @@ class MyMovieDetails : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId;
-        if(id==R.id.menubuttonlogin){
+        if(id== R.id.menubuttonlogin){
             var login: Intent = Intent(applicationContext, LoginPanel::class.java);
             startActivity(login);
             return true
         }
-        else if(id==R.id.menubuttonregister){
+        else if(id== R.id.menubuttonregister){
             var register: Intent = Intent(applicationContext, RegisterPanel::class.java);
             startActivity(register);
             return true
         }
-        else if(id==R.id.menubuttonmymovies){
+        else if(id== R.id.menubuttonmymovies){
             var mymovies: Intent = Intent(applicationContext, MyMoviesList::class.java);
             startActivity(mymovies);
             return true
         }
-        else if(id==R.id.menubuttonmainpage){
+        else if(id== R.id.menubuttonmainpage){
             var search: Intent = Intent(applicationContext, SearchPanel::class.java);
             startActivity(search);
             return true
         }
-        else if(id==R.id.menubuttonlogout){
+        else if(id== R.id.menubuttonlogout){
             var wylog: Intent = Intent(applicationContext, Logout::class.java)
             startActivity(wylog)
             return true
         }
-        else if(id==R.id.refresh){
+        else if(id== R.id.refresh){
             finish();
             startActivity(getIntent());
             return true

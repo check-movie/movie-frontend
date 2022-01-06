@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.Comment
 
 import android.content.Context
 import android.content.Intent
@@ -13,6 +13,7 @@ import android.widget.TextView
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
+import com.example.myapplication.R
 import kotlinx.android.synthetic.main.commentrow.*
 
 class CommentAdapter (var mCtx: Context, var resources:Int, var items:List<CommentModel>):
@@ -29,7 +30,7 @@ class CommentAdapter (var mCtx: Context, var resources:Int, var items:List<Comme
         val editcomment:Button = view.findViewById(R.id.editcomment)
         val deletecomment:Button = view.findViewById(R.id.deletecomment)
 
-        var mItem:CommentModel = items[position]
+        var mItem: CommentModel = items[position]
         commentauthoravatar.loadSvg(mItem.author_avatar)
         commentauthor.text = mItem.author
         commentopinion.text = mItem.opinion

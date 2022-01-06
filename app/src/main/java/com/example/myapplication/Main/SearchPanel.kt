@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.Main
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,10 @@ import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.myapplication.Movie.MovieTMDB.MoviesSearchResult
+import com.example.myapplication.Movie.MyMovie.MyMoviesList
+import com.example.myapplication.R
+import com.example.myapplication.User.*
 import kotlinx.android.synthetic.main.activity_search_panel.*
 
 class SearchPanel : AppCompatActivity() {
@@ -46,7 +50,7 @@ class SearchPanel : AppCompatActivity() {
         startActivity(getIntent());
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if(UserToken=="") {
+        if(UserToken =="") {
             menuInflater.inflate(R.menu.main_menu, menu);
         }
         else{
@@ -56,30 +60,30 @@ class SearchPanel : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId;
-        if(id==R.id.menubuttonlogin){
+        if(id== R.id.menubuttonlogin){
             var login: Intent = Intent(applicationContext, LoginPanel::class.java);
             startActivity(login);
             return true
         }
-        else if(id==R.id.menubuttonregister){
+        else if(id== R.id.menubuttonregister){
             var register: Intent = Intent(applicationContext, RegisterPanel::class.java);
             startActivity(register);
             return true
         }
-        else if(id==R.id.menubuttonmymovies){
+        else if(id== R.id.menubuttonmymovies){
             var mymovies: Intent = Intent(applicationContext, MyMoviesList::class.java);
             startActivity(mymovies);
             return true
         }
-        else if(id==R.id.menubuttonmainpage){
+        else if(id== R.id.menubuttonmainpage){
             return true
         }
-        else if(id==R.id.menubuttonlogout){
+        else if(id== R.id.menubuttonlogout){
             var wylog: Intent = Intent(applicationContext, Logout::class.java)
             startActivity(wylog)
             return true
         }
-        else if(id==R.id.refresh){
+        else if(id== R.id.refresh){
             finish();
             startActivity(getIntent());
             return true

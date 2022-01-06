@@ -1,32 +1,38 @@
-package com.example.myapplication
+package com.example.myapplication.Comment
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ListView
-import androidx.appcompat.app.AppCompatActivity
-import org.json.JSONObject
+import com.example.myapplication.*
+import com.example.myapplication.Main.SearchPanel
+import com.example.myapplication.Movie.MyMovie.MyMoviesList
+import com.example.myapplication.User.LoginPanel
+import com.example.myapplication.User.Logout
+import com.example.myapplication.User.RegisterPanel
+import com.example.myapplication.User.UserToken
+import kotlinx.android.synthetic.main.activity_comment_section.*
+import org.json.JSONArray
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
-class MoviesSearchResult : AppCompatActivity(){
+class CommentSection : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_movies_list)
+        setContentView(R.layout.activity_comment_section)
 
         var jsonStr: String = ""
 
-        val getmovies = Thread(Runnable {
+        val getcomments = Thread(Runnable {
             try {
-                var link:String = "https://api.themoviedb.org/3/search/movie?api_key=9ed1ff5e176006301b0927dd2aefe12c&language=pl-PL&include_adult=true&query="+intent.getStringExtra("searchdata").toString();
-                val mURL = URL(link)
-
+                val mURL = URL("https://citygame.ga/api/movies/"+intent.getIntExtra("id", 1).toString()+"/show")
                 with(mURL.openConnection() as HttpURLConnection) {
+
+                    setRequestProperty("Authorization", "Bearer $UserToken")
                     requestMethod = "GET"
 
                     BufferedReader(InputStreamReader(inputStream)).use {
@@ -45,32 +51,36 @@ class MoviesSearchResult : AppCompatActivity(){
                 e.printStackTrace()
             }
         })
-        getmovies.start()
-        while(getmovies.isAlive){}
+        getcomments.start()
+        while(getcomments.isAlive){}
 
         var listview = findViewById<ListView>(R.id.listView)
-        var list = mutableListOf<MoviesListModel>()
+        var list = mutableListOf<CommentModel>()
 
-        val jsonObject = JSONObject(jsonStr)
-        val jsonArray = jsonObject.optJSONArray("results")
+        var jsonArrayx = JSONArray(jsonStr)
+        var jsonObjectx = jsonArrayx.getJSONObject(0)
+        var jsonArray = jsonObjectx.optJSONArray("comments")
 
         for(i in 0 until jsonArray.length()){
             val jsonObject = jsonArray.getJSONObject(i)
-            list.add(MoviesListModel(jsonObject.optString("title"),"Premiera: "+jsonObject.optString("release_date"),jsonObject.optString("vote_average"),"https://image.tmdb.org/t/p/original"+jsonObject.optString("poster_path"),jsonObject.optString("id").toInt()))
+            list.add(CommentModel(jsonObject.optString("opinion"),jsonObject.optString("author"),jsonObject.optString("author_avatar"),jsonObject.optString("created_at"),jsonObject.optString("id").toInt()))
         }
-        listview.adapter = MoviesListAdapter(this, R.layout.movierow, list)
+        listview.adapter = CommentAdapter(this, R.layout.commentrow, list)
+        addcomment.setOnClickListener {
+            var addcomm: Intent = Intent(applicationContext, CommentAdd::class.java)
+            addcomm.putExtra("id", intent.getIntExtra("id", 1))
+            startActivity(addcomm)
 
-
-
-        listview.setOnItemClickListener{ parent: AdapterView<*>, view: View, position:Int, id:Long ->
-            var details: Intent = Intent(applicationContext, MovieDetails::class.java)
-            details.putExtra("id", list.get(position).id)
-            startActivity(details)
         }
+    }
 
+    override fun onRestart() {
+        super.onRestart()
+        finish();
+        startActivity(getIntent());
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if(UserToken=="") {
+        if(UserToken =="") {
             menuInflater.inflate(R.menu.main_menu, menu);
         }
         else{
@@ -80,32 +90,32 @@ class MoviesSearchResult : AppCompatActivity(){
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId;
-        if(id==R.id.menubuttonlogin){
+        if(id== R.id.menubuttonlogin){
             var login: Intent = Intent(applicationContext, LoginPanel::class.java);
             startActivity(login);
             return true
         }
-        else if(id==R.id.menubuttonregister){
+        else if(id== R.id.menubuttonregister){
             var register: Intent = Intent(applicationContext, RegisterPanel::class.java);
             startActivity(register);
             return true
         }
-        else if(id==R.id.menubuttonmymovies){
+        else if(id== R.id.menubuttonmymovies){
             var mymovies: Intent = Intent(applicationContext, MyMoviesList::class.java);
             startActivity(mymovies);
             return true
         }
-        else if(id==R.id.menubuttonmainpage){
+        else if(id== R.id.menubuttonmainpage){
             var search: Intent = Intent(applicationContext, SearchPanel::class.java);
             startActivity(search);
             return true
         }
-        else if(id==R.id.menubuttonlogout){
+        else if(id== R.id.menubuttonlogout){
             var wylog: Intent = Intent(applicationContext, Logout::class.java)
             startActivity(wylog)
             return true
         }
-        else if(id==R.id.refresh){
+        else if(id== R.id.refresh){
             finish();
             startActivity(getIntent());
             return true

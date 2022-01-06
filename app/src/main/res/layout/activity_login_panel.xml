@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginPanel">
+    tools:context=".User.LoginPanel">
 
     <TextView
         android:id="@+id/loginbladhaslo"

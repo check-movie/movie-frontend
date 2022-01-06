@@ -1,13 +1,14 @@
-package com.example.myapplication
+package com.example.myapplication.Comment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.myapplication.R
+import com.example.myapplication.User.UserToken
 import kotlinx.android.synthetic.main.activity_comment_delete.*
 import java.io.OutputStreamWriter
 import java.net.HttpURLConnection
 import java.net.URL
-import java.net.URLEncoder
 
 class CommentDelete : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

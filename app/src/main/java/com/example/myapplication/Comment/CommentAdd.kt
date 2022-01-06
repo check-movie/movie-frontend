@@ -1,10 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.Comment
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
 import android.widget.Toast
+import com.example.myapplication.R
+import com.example.myapplication.User.UserToken
 import kotlinx.android.synthetic.main.activity_comment_add.*
 import java.io.OutputStreamWriter
 import java.net.HttpURLConnection

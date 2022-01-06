@@ -1,10 +1,9 @@
-package com.example.myapplication
+package com.example.myapplication.User
 
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -15,6 +14,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.example.myapplication.Movie.MyMovie.MyMoviesList
+import com.example.myapplication.R
+import com.example.myapplication.Main.SearchPanel
 import kotlinx.android.synthetic.main.activity_login_panel.*
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -108,7 +110,8 @@ class LoginPanel : AppCompatActivity() {
                             }
                             var token: String = JSONObject(response.toString()).get("access_token").toString()
                             UserToken = token
-                            val sharedPreferences: SharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
+                            val sharedPreferences: SharedPreferences = getSharedPreferences(
+                                SHARED_PREFS, Context.MODE_PRIVATE)
                             val editor: SharedPreferences.Editor = sharedPreferences.edit()
                             editor.putString(SHAREDPREFSTOKEN, token)
                             editor.apply()
@@ -133,7 +136,7 @@ class LoginPanel : AppCompatActivity() {
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        if(UserToken=="") {
+        if(UserToken =="") {
             menuInflater.inflate(R.menu.main_menu, menu);
         }
         else{
@@ -143,30 +146,30 @@ class LoginPanel : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId;
-        if(id==R.id.menubuttonlogin){
+        if(id== R.id.menubuttonlogin){
             return true
         }
-        else if(id==R.id.menubuttonregister){
+        else if(id== R.id.menubuttonregister){
             var register: Intent = Intent(applicationContext, RegisterPanel::class.java);
             startActivity(register);
             return true
         }
-        else if(id==R.id.menubuttonmymovies){
+        else if(id== R.id.menubuttonmymovies){
             var mymovies: Intent = Intent(applicationContext, MyMoviesList::class.java);
             startActivity(mymovies);
             return true
         }
-        else if(id==R.id.menubuttonmainpage){
+        else if(id== R.id.menubuttonmainpage){
             var search: Intent = Intent(applicationContext, SearchPanel::class.java);
             startActivity(search);
             return true
         }
-        else if(id==R.id.menubuttonlogout){
+        else if(id== R.id.menubuttonlogout){
             var wylog: Intent = Intent(applicationContext, Logout::class.java)
             startActivity(wylog)
             return true
         }
-        else if(id==R.id.refresh){
+        else if(id== R.id.refresh){
             finish();
             startActivity(getIntent());
             return true

@@ -14,28 +14,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".CommentDelete"
+            android:name=".Comment.CommentDelete"
             android:exported="false" />
         <activity
-            android:name=".CommentEdit"
+            android:name=".Comment.CommentEdit"
             android:exported="false" />
         <activity
-            android:name=".CommentAdd"
+            android:name=".Comment.CommentAdd"
             android:exported="false" />
         <activity
-            android:name=".CommentSection"
+            android:name=".Comment.CommentSection"
             android:exported="false" />
         <activity
-            android:name=".MyMovieDetails"
+            android:name=".Movie.MyMovie.MyMovieDetails"
             android:exported="false" />
         <activity
-            android:name=".Logout"
+            android:name=".User.Logout"
             android:exported="false" />
         <activity
-            android:name=".MovieDetails"
+            android:name=".Movie.MovieTMDB.MovieDetails"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".Main.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,19 +44,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterPanel"
+            android:name=".User.RegisterPanel"
             android:exported="false" />
         <activity
-            android:name=".LoginPanel"
+            android:name=".User.LoginPanel"
             android:exported="false" />
         <activity
-            android:name=".MyMoviesList"
+            android:name=".Movie.MyMovie.MyMoviesList"
             android:exported="false" />
         <activity
-            android:name=".MoviesSearchResult"
+            android:name=".Movie.MovieTMDB.MoviesSearchResult"
             android:exported="false" />
         <activity
-            android:name=".SearchPanel"
+            android:name=".Main.SearchPanel"
             android:exported="false" />
     </application>
 
