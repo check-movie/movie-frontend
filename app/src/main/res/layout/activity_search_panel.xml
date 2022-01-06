@@ -24,28 +24,28 @@
         android:id="@+id/searchFilm"
         android:layout_width="65dp"
         android:layout_height="51dp"
-        android:layout_marginEnd="4dp"
         android:layout_marginBottom="364dp"
         android:text="->"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchbarLabel"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintHorizontal_bias="0.979"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titlesearch"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/titlesearch"
         android:layout_width="324dp"
         android:layout_height="50dp"
-        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Tytuł Filmu"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/searchFilm"
-        app:layout_constraintHorizontal_bias="0.888"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/searchbarLabel"
+        app:layout_constraintHorizontal_bias="0.806"
+        app:layout_constraintStart_toStartOf="@+id/searchbarLabel"
         app:layout_constraintTop_toBottomOf="@+id/searchbarLabel"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.022" />
 
     <ImageView
         android:id="@+id/imageView"
