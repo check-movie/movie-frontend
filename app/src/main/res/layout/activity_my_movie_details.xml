@@ -248,14 +248,6 @@ android:orientation="vertical">
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="" />
-<!--
-            <Button
-                android:id="@+id/addfav"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="25"
-                android:text="Oceń " />
-                -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
